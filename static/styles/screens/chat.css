@@ -1,0 +1,16 @@
+/* Экран вопросов (чат)
+   Автор: Лиза */
+
+.chat { display: flex; flex-direction: column; gap: 10px; }
+.bubble { max-width: 84%; padding: 10px 14px; border-radius: 18px; font-size: 14px; line-height: 20px; }
+.bubble.ai { align-self: flex-start; background: var(--card); border: 1px solid var(--line); border-bottom-left-radius: 6px; }
+.bubble.me { align-self: flex-end; background: var(--main); color: #fff; border-bottom-right-radius: 6px; }
+.bubble.ai small { display: block; font-size: 10px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: var(--main); margin-bottom: 2px; }
+.answer { display: flex; gap: 8px; }
+.answer input { flex: 1; min-width: 0; height: 44px; border-radius: 22px; border: 1px solid var(--line); background: var(--card); padding: 0 16px; font: 500 14px var(--display); color: var(--ink); }
+.answer button { width: 44px; height: 44px; border-radius: 22px; border: 0; background: var(--main); display: grid; place-items: center; flex-shrink: 0; }
+.answer button svg { width: 18px; height: 18px; }
+.progress { display: flex; gap: 6px; } .progress i { flex: 1; height: 4px; border-radius: 2px; background: rgba(255,255,255,.3); } .progress i.on { background: #FFF4E0; }
+.foot { padding: 10px 18px 22px; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 10px; }
+.foot p { margin: 0; font-size: 11px; line-height: 16px; color: var(--muted); text-align: center; }
+.foot .btns { display: grid; grid-template-columns: 1fr 2fr; gap: 10px; }

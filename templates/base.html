@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TravelAnyVibe — маршрут под ваш вайб</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Marck+Script&display=swap">
+{% for css in ["base", "showcase", "components", "forms", "screens/start", "screens/city", "screens/route", "screens/chat", "screens/place"] %}
+<link rel="stylesheet" href="/static/styles/{{ css }}.css">
+{% endfor %}
+</head>
+<body>
+{# Общий каркас страницы: слева рассказ о проекте, справа телефон с текущим экраном. Автор: Лиза #}
+<div class="stage">
+  <section class="intro" aria-label="О проекте">
+    <span class="eyebrow">Колледж «ИТ.Москва» · проект с ИИ</span>
+    <h1>TravelAnyVibe — <em>маршрут под ваш вайб</em></h1>
+    <p class="lead">Мобильное приложение-гид. Человек описывает поездку своими словами, ИИ уточняет детали, выбирает один лучший город и собирает маршрут по часам из нашей проверенной базы мест.</p>
+    <ol class="steps">
+      <li><div><b>Запрос своими словами</b><span>«Едем с ребёнком на 3 дня, хотим активно» — пожелания распознаются из текста.</span></div></li>
+      <li><div><b>Уточняющие вопросы</b><span>До 5 вопросов — только о том, чего не хватает в запросе.</span></div></li>
+      <li><div><b>Лучшее совпадение</b><span>Учитывается весь диалог: ИИ выбирает одну страну и объясняет почему.</span></div></li>
+      <li><div><b>Маршрут по часам</b><span>RAG-система находит места в базе, расписание подстраивается под детей, дождь, бюджет и темп. DeepSeek определяет адреса и считает время в пути на машине.</span></div></li>
+    </ol>
+    <div class="citystrip">
+      {% for name, c in CITIES.items() %}<span><i style="background:{{ c.color }}"></i>{{ name }} · {{ c.country }}</span>{% endfor %}
+    </div>
+    <div class="team">
+      <div><b>Лиза</b>тимлид, приложение, дизайн</div>
+      <div><b>Антон</b>RAG-система</div>
+      <div><b>Андрей</b>база мест, ИИ-диалог</div>
+    </div>
+  </section>
+  <div class="phonecol">
+    <main class="phone" style="{{ theme }}">
+      <section class="screen">
+        {% block screen %}{% endblock %}
+      </section>
+    </main>
+    <p class="note">Интерактивная презентация приложения — попробуйте свой запрос. Места — из базы проекта (6 городов, {{ PLACES|length }} мест).</p>
+  </div>
+</div>
+</body>
+</html>

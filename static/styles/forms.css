@@ -1,0 +1,23 @@
+/* Кнопки-ссылки и формы для версии на Python: экраны переключаются ссылками и формами
+   Автор: Лиза */
+
+a.round, a.cta, a.ghost, a.card, .tabs a { text-decoration: none; color: inherit; }
+a.cta { color: #fff; }
+a.ghost, .stack .ghost { display: flex; align-items: center; justify-content: center; width: 100%; color: var(--ink); }
+a.card { min-width: 0; }
+a:focus-visible, input:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.stack { display: flex; flex-direction: column; }
+
+/* Галочки и переключатели спрятаны, вместо них видны подписи-кнопки */
+.vh { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
+.chips label.chip { display: inline-flex; align-items: center; cursor: pointer; user-select: none; }
+.vh:checked + .chip { background: var(--main); border-color: var(--main); color: #fff; }
+.vh:focus-visible + label { outline: 3px solid var(--accent); outline-offset: 2px; }
+.days label { height: 38px; border-radius: 18px; display: grid; place-items: center; cursor: pointer; font-size: 12px;
+  font-weight: 800; letter-spacing: .8px; text-transform: uppercase; color: var(--muted); }
+.days .vh:checked + label { background: var(--card); color: var(--ink); box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+
+/* Вкладки дней — ссылки */
+.tabs a { height: 36px; border-radius: 18px; display: grid; place-items: center; color: #FFF4E0; font-size: 11.5px;
+  font-weight: 800; letter-spacing: 1px; text-transform: uppercase; }
+.tabs a[aria-current="page"] { background: var(--paper); color: var(--ink); }

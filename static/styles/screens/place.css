@@ -1,0 +1,10 @@
+/* Экран места
+   Автор: Лиза */
+
+.grid2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.cell { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 12px 14px; display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.cell b { font-size: 14px; font-weight: 800; overflow-wrap: anywhere; }
+.para { margin: 0; font-size: 14px; line-height: 21px; }
+.warn { display: flex; gap: 10px; align-items: flex-start; border: 1px dashed #D9CBB6; border-radius: 16px; padding: 12px 14px; font-size: 12px; line-height: 18px; color: var(--muted); background: var(--card); }
+.warn svg { width: 18px; height: 18px; flex-shrink: 0; margin-top: 1px; }
+.empty { padding: 30px 20px; text-align: center; color: var(--muted); font-size: 14px; }

@@ -1,0 +1,29 @@
+{# Экран 4: маршрут по дням и часам. Автор: Лиза #}
+{% extends "base.html" %}
+{% block screen %}
+<div class="rhead">
+  <div class="rtop"><a class="round" href="/city" aria-label="Назад">{{ ICONS.back|safe }}</a>
+    <div class="rtitle"><span class="script small">маршрут для вас</span><span class="caps" style="font-size:21px">{{ s.city }}</span>
+      <span class="sub">{{ s.wishes|join(" · ") or "без особых пожеланий" }}</span></div>
+    <span class="spacer"></span></div>
+  <div class="stops">{% for r in rows %}<div><i></i><b>{{ LABELS[r.item.kind] }}</b><span>{{ r.item.time }}</span></div>{% endfor %}</div>
+  <div class="tabs" style="--n:{{ s.route|length }}">
+    {% for day in s.route %}<a href="/route?day={{ loop.index0 }}" {% if loop.index0 == d %}aria-current="page"{% endif %}>День {{ loop.index }}</a>{% endfor %}
+  </div>
+</div>
+<div class="timeline">
+  {% for r in rows %}
+  {% if r.road %}<div class="move"><span></span><div class="rail"><i></i></div><span>{{ r.road }}</span></div>{% endif %}
+  <div class="row">
+    <div class="when"><b>{{ r.item.time }}</b><span>{{ r.hours }}</span></div>
+    <div class="rail"><i class="top"></i><b></b><i class="rest"></i></div>
+    <a class="card" href="/place/{{ d }}/{{ loop.index0 }}"><span class="k">{{ LABELS[r.item.kind] }}</span><span class="n">{{ r.item.place.name }}</span>
+      <span class="m">{{ r.tags }}{% if r.address %}<br>{{ r.address }}{% endif %}</span></a>
+  </div>
+  {% else %}
+  <div class="empty">В базе не хватило мест для этого дня.</div>
+  {% endfor %}
+</div>
+<div class="foot"><p>Маршрут собран из нашей проверенной базы мест.{% if ai_legs %} Адреса и время в пути — оценка DeepSeek без учёта пробок.{% endif %} Часы работы и цены проверяйте на официальных сайтах.</p>
+  <div class="btns"><a class="ghost" href="/">Изменить</a><a class="cta" href="/city">Назад к городу</a></div></div>
+{% endblock %}

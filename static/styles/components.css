@@ -1,0 +1,32 @@
+/* Общие компоненты: кнопки, чипсы, плашки, иллюстрации
+   Автор: Лиза */
+
+button { font: inherit; color: inherit; cursor: pointer; }
+button:focus-visible, textarea:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.screen { display: flex; flex-direction: column; flex: 1; animation: in .28s ease both; }
+@keyframes in { from { opacity: .4; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .screen { animation: none; } .phone { transition: none; } }
+
+.art { position: relative; flex-shrink: 0; }
+.art svg { display: block; width: 100%; height: 100%; }
+.torn { position: absolute; left: 0; right: 0; bottom: -1px; height: 30px; }
+.torn svg { width: 100%; height: 100%; display: block; }
+.round { position: absolute; top: 18px; width: 44px; height: 44px; border-radius: 22px; border: 0;
+  background: #fff; display: grid; place-items: center; box-shadow: 0 2px 8px rgba(0,0,0,.12); }
+.round.left { left: 18px; } .round.right { right: 18px; }
+.round svg { width: 20px; height: 20px; }
+.pad { padding: 18px 20px 24px; display: flex; flex-direction: column; gap: 16px; flex: 1; }
+.label { font-size: 11px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); }
+.cta { display: flex; align-items: center; justify-content: center; gap: 10px; height: 56px; border-radius: 28px; border: 0;
+  background: var(--main); color: #fff; font-size: 13px; font-weight: 800; letter-spacing: 1.3px; text-transform: uppercase; width: 100%; }
+.cta svg { width: 18px; height: 18px; }
+button:disabled { opacity: .7; cursor: progress; }
+.ghost { height: 52px; border-radius: 26px; border: 1.5px solid var(--ink); background: transparent; font-size: 12px; font-weight: 800;
+  letter-spacing: 1px; text-transform: uppercase; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { height: 40px; padding: 0 15px; border-radius: 20px; border: 1px solid var(--line); background: var(--card); font-size: 13px; font-weight: 700; }
+.chip[aria-pressed="true"] { background: var(--main); border-color: var(--main); color: #fff; }
+.band { background: var(--main); color: #fff; padding: 2px 22px 20px; display: flex; flex-direction: column; gap: 4px; }
+.band.center { align-items: center; text-align: center; }
+.script { font-family: var(--script); font-size: 24px; line-height: 26px; color: #FFF4E0; }
+.caps { font-weight: 900; text-transform: uppercase; letter-spacing: 1.5px; text-wrap: balance; }

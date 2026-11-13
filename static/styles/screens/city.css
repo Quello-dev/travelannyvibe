@@ -1,0 +1,13 @@
+/* Экран города
+   Автор: Лиза */
+
+.badge { margin-top: 6px; font-size: 10.5px; font-weight: 800; letter-spacing: .8px; text-transform: uppercase; color: var(--ink);
+  background: var(--accent); border-radius: 12px; padding: 5px 12px; }
+.reasons { display: flex; flex-direction: column; gap: 9px; }
+.reasons div { display: flex; gap: 10px; align-items: center; font-size: 14px; line-height: 20px; }
+.reasons i { width: 10px; height: 10px; border-radius: 5px; background: var(--main); flex-shrink: 0; }
+.cities { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.cities button { height: 44px; border-radius: 22px; border: 1px solid #D9CBB6; background: transparent; font-size: 12px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center; gap: 6px; }
+.cities button[aria-pressed="true"] { background: #fff; border: 2px solid var(--main); }
+.cities b { width: 10px; height: 10px; border-radius: 5px; flex-shrink: 0; }

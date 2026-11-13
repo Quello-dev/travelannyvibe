@@ -1,0 +1,34 @@
+{# Экран 2: чат с уточняющими вопросами. Автор: Лиза #}
+{% extends "base.html" %}
+{% block screen %}
+<div class="rhead">
+  <div class="rtop"><a class="round" href="/" aria-label="Назад">{{ ICONS.back|safe }}</a>
+    <div class="rtitle"><span class="script small">пара уточнений</span><span class="caps" style="font-size:19px">Идеальный маршрут</span></div>
+    <span class="spacer"></span></div>
+  <div class="progress">{% for i in range(max_q) %}<i class="{{ 'on' if i < s.qa|length }}"></i>{% endfor %}</div>
+</div>
+<div class="pad">
+  <div class="chat">
+    <div class="bubble me">{{ s.text }}</div>
+    {% for qa in s.qa %}
+    <div class="bubble ai"><small>Вопрос {{ loop.index }}</small>{{ qa.question }}</div>
+    <div class="bubble me">{{ qa.answer }}</div>
+    {% endfor %}
+    {% if q %}<div class="bubble ai"><small>Вопрос {{ s.qa|length + 1 }} из {{ max_q }}</small>{{ q.question }}</div>{% endif %}
+  </div>
+  {% if q %}
+  <form class="chips" method="post" action="/answer">
+    {% for o in q.options %}<button class="chip" name="answer" value="{{ o }}">{{ o }}</button>{% endfor %}
+  </form>
+  <form class="answer" method="post" action="/answer">
+    <input name="answer" placeholder="Или ответьте своими словами" autocomplete="off">
+    <button aria-label="Отправить">{{ ICONS.arrow|safe }}</button>
+  </form>
+  {% endif %}
+  <div class="grow"></div>
+  {% if s.error %}<p class="hint">{{ s.error }}</p>{% endif %}
+  <form class="stack" method="post" action="/finish" onsubmit="this.querySelector('button').textContent = 'DeepSeek подбирает город…'">
+    <button class="{{ 'ghost' if q else 'cta' }}">{{ "Хватит вопросов — подобрать город" if q else "Подобрать город" }}</button>
+  </form>
+</div>
+{% endblock %}

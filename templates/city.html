@@ -1,0 +1,21 @@
+{# Экран 3: лучшее совпадение — город и причины. Автор: Лиза #}
+{% extends "base.html" %}
+{% block screen %}
+<div class="art" style="height:230px">{{ ART[c.key]|safe }}<a class="round left" href="/" aria-label="Назад">{{ ICONS.back|safe }}</a>{{ torn(c.color)|safe }}</div>
+<div class="band center">
+  <span class="script">лучшее совпадение</span>
+  <span class="caps" style="font-size:36px;line-height:40px">{{ s.city }}</span>
+  <span class="sub">{{ c.country }} · {{ s.days }} {{ "день" if s.days == 1 else "дня" }}{% if "С детьми" in s.wishes %} · с детьми{% endif %}{% if "В дождь" in s.wishes %} · в дождь{% endif %}</span>
+  <span class="badge">Проверенная база мест · {{ count }}</span>
+</div>
+<div class="pad">
+  <span class="label">Почему именно {{ s.city }}</span>
+  <div class="reasons">{% for r in s.reasons %}<div><i></i>{{ r }}</div>{% endfor %}</div>
+  <div class="grow"></div>
+  <p class="hint">DeepSeek учёл весь запрос и ответы и выбрал одну страну из шести. Хотите другую — измените запрос.</p>
+  <form class="stack" method="post" action="/route" onsubmit="this.querySelector('button').textContent = 'Строим маршрут…'">
+    <button class="cta">Построить маршрут</button>
+  </form>
+  <a class="ghost" href="/">Изменить запрос</a>
+</div>
+{% endblock %}

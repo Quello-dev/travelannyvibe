@@ -1,0 +1,31 @@
+{# Экран 1: запрос своими словами, пожелания, дни. Автор: Лиза #}
+{% extends "base.html" %}
+{% block screen %}
+<div class="art mosaic">
+  {% for key in ["moscow", "paris", "tokyo", "limassol", "barcelona", "sydney"] %}<div>{{ ART[key]|safe }}</div>{% endfor %}
+  {{ torn("#F4EDE1")|safe }}
+</div>
+<form class="pad" method="post" action="/start" onsubmit="this.querySelector('.cta').textContent = 'DeepSeek думает…'">
+  <div class="logo">{{ LOGO|safe }}<div><div class="w1">TRAVEL</div><div class="w2">any vibe</div></div></div>
+  <div class="field"><label class="label" for="req">Опишите поездку</label><textarea id="req" name="text">{{ s.text }}</textarea></div>
+  <div class="field"><span class="label">Пожелания</span>
+    <div class="chips">
+      {% for wish in wishes %}
+      <input class="vh" type="checkbox" name="wish" value="{{ wish }}" id="w{{ loop.index }}" {% if wish in s.wishes %}checked{% endif %}>
+      <label class="chip" for="w{{ loop.index }}">{{ wish }}</label>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="field"><span class="label">Сколько дней</span>
+    <div class="days">
+      {% for d in [1, 2, 3] %}
+      <input class="vh" type="radio" name="days" value="{{ d }}" id="d{{ d }}" {% if s.days == d %}checked{% endif %}>
+      <label for="d{{ d }}">{{ d }} {{ "день" if d == 1 else "дня" }}</label>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="grow"></div>
+  {% if s.error %}<p class="hint">{{ s.error }}</p>{% endif %}
+  <button class="cta">Подобрать маршрут {{ ICONS.arrow|safe }}</button>
+</form>
+{% endblock %}

@@ -1,0 +1,20 @@
+{# Экран 5: карточка места. Автор: Лиза #}
+{% extends "base.html" %}
+{% block screen %}
+<div class="art" style="height:220px">{{ ART[c.key]|safe }}<a class="round left" href="/route?day={{ d }}" aria-label="Назад">{{ ICONS.back|safe }}</a>{{ torn(c.color)|safe }}</div>
+<div class="band"><span class="script" style="font-size:22px;line-height:24px">день {{ d + 1 }} · {{ item.time }}</span>
+  <span class="caps" style="font-size:24px;line-height:28px">{{ p.name }}</span></div>
+<div class="pad">
+  <div class="grid2">
+    <div class="cell"><span class="label">В маршруте</span><b>{{ item.time }}–{{ end }}</b></div>
+    <div class="cell"><span class="label">Тип</span><b>{{ p.type }}</b></div>
+    <div class="cell"><span class="label">Цена</span><b>{{ p.price or "уточните на сайте" }}</b></div>
+    <div class="cell"><span class="label">{{ extra_title }}</span><b>{{ extra }}</b></div>
+  </div>
+  {% if address %}<div class="field"><span class="label">Адрес{% if not p.address %} · по данным DeepSeek{% endif %}</span><p class="para">{{ address }}</p></div>{% endif %}
+  <div class="field"><span class="label">О месте</span><p class="para">{{ p.about }}</p></div>
+  <div class="field"><span class="label">Почему в маршруте</span><p class="para">{{ why }}</p></div>
+  <div class="grow"></div>
+  <div class="warn">{{ ICONS.info|safe }}<span>Описание — из нашей базы мест. Часы работы и цены проверьте на официальном сайте места.</span></div>
+</div>
+{% endblock %}
